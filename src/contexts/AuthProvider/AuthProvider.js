@@ -24,10 +24,14 @@ const AuthProvider = ({ children }) => {
     return () => unSubscribe;
   }, []);
 
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
   const logOut = () => {
     return signOut(auth);
   };
-  const AuthInfo = { user, providerLogin, logOut };
+  const AuthInfo = { user, providerLogin, logOut, createUser };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
   );
