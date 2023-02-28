@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, setLoader } = useContext(AuthContext);
   const [error, setError] = useState();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +32,9 @@ const Login = () => {
       .catch((e) => {
         console.error(e);
         setError(e.message);
+      })
+      .finally(() => {
+        setLoader(false);
       });
   };
   return (
